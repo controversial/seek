@@ -4,8 +4,8 @@ type Student {
   id: ID! @id
   name: String!
   lastSeen: DateTime
-  location: Location
-  tentativeLocation: Location
+  location: Location @relation(name: "Location")
+  tentativeLocation: Location @relation(name: "TentativeLocation")
   assignedDeviceId: String @unique
   schedule: [MasterScheduleEntry!]!
   events: [Event!]!
@@ -20,13 +20,14 @@ type Location {
   latitude: Float
   longitude: Float
   classes: [MasterScheduleEntry!]!
+  students: [Student!]! @relation(name: "Location")
 }
 
 
 # A meeting of a class with a specific teacher in a specific location during a specific block
 
 type MasterScheduleEntry {
-  id: ID @id
+  id: ID! @id
   letterDay: ScheduleDay!
   periodNum: Int!
   startTime: DateTime!
