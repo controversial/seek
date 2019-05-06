@@ -2,7 +2,8 @@
   "name": "edd-attendance-server",
   "version": "0.0.1",
   "scripts": {
-    "start": "docker-compose up",
+    "start": "docker-compose up -d && prisma deploy && node app",
+    "stop": "docker-compose down -v",
     "postinstall": "link-module-alias"
   },
   "repository": {
