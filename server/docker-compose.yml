@@ -15,9 +15,9 @@ services:
             host: mysql
             user: root
             password: prisma
-            rawAccess: true
+            # rawAccess: true
             port: 3306
-            migrations: true
+            # migrations: true
   mysql:
     image: mysql:5.7
     restart: always
