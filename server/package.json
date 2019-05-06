@@ -1,0 +1,20 @@
+{
+  "name": "edd-attendance-server",
+  "version": "0.0.1",
+  "scripts": {
+    "start": "docker-compose up"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/controversial/edd-attendance.git"
+  },
+  "main": "app/index.js",
+  "author": "Luke Deen Taylor",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/controversial/edd-attendance/issues"
+  },
+  "dependencies": {
+    "prisma-client-lib": "^1.30.4"
+  }
+}
