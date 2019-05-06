@@ -2,7 +2,8 @@
   "name": "edd-attendance-server",
   "version": "0.0.1",
   "scripts": {
-    "start": "docker-compose up"
+    "start": "docker-compose up",
+    "postinstall": "link-module-alias"
   },
   "repository": {
     "type": "git",
@@ -16,5 +17,11 @@
   },
   "dependencies": {
     "prisma-client-lib": "^1.30.4"
+  },
+  "devDependencies": {
+    "link-module-alias": "^1.2.0"
+  },
+  "_moduleAliases": {
+    "~prisma": "./generated/prisma-client"
   }
 }
