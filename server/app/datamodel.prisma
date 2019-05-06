@@ -1,0 +1,74 @@
+# A student; a user tracked in the system
+
+type Student {
+  id: ID! @id
+  name: String!
+  lastSeen: DateTime
+  location: Location
+  tentativeLocation: Location
+  assignedDeviceId: String @unique
+  schedule: [MasterScheduleEntry!]!
+  events: [Event!]!
+}
+
+
+# A location within the school building
+
+type Location {
+  id: ID! @id
+  name: String!
+  latitude: Float
+  longitude: Float
+  classes: [MasterScheduleEntry!]!
+}
+
+
+# A meeting of a class with a specific teacher in a specific location during a specific block
+
+type MasterScheduleEntry {
+  id: ID @id
+  letterDay: ScheduleDay!
+  periodNum: Int!
+  startTime: DateTime!
+  endTime: DateTime!
+  class: Class!
+  teacher: User!
+  room: Location!
+}
+
+enum ScheduleDay {
+  A
+  B
+}
+
+type Class {
+  id: ID! @id
+  name: String!
+}
+
+
+# A user; someone who can log into the system
+
+type User {
+  id: ID! @id
+  name: String!
+  username: String!
+  password: String!
+  classes: [MasterScheduleEntry!] # If provided, the user may only view these classes
+}
+
+
+# A tracking event; a single ping from a single device
+
+type Event {
+  id: ID! @id
+  student: Student!
+  timestamp: DateTime!
+  location: Location
+  type: EventType
+}
+
+enum EventType {
+  ENTER
+  LEAVE
+}
