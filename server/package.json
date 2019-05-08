@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "scripts": {
     "start": "docker-compose up -d && prisma deploy && node app",
-    "stop": "docker-compose down -v",
+    "stop": "docker-compose down",
     "postinstall": "link-module-alias"
   },
   "repository": {
