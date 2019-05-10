@@ -15,10 +15,11 @@ ws.on('message', async (message) => {
   if (student === null) return;
   // Match location id to the location measured
   const location = await prisma.location({ name: locationName });
+  if (!location) console.warn(`Warning: find3 location '${locationName}' didn't match any defined locations`);
   // Record event
   await prisma.createEvent({
     timestamp: new Date(time),
     student: { connect: { id: student.id } },
-    location: { connect: { id: location.id } },
+    ...location && { location: { connect: { id: location.id } } },
   });
 });
