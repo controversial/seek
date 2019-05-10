@@ -1,0 +1,73 @@
+type Query {
+
+}
+
+type Mutation {
+
+}
+
+
+
+# Duplicated from datamodel.prisma
+
+type Student {
+  id: ID!
+  name: String!
+  lastSeen: Int
+  location: Location
+  tentativeLocation: Location
+  assignedDeviceId: String
+  schedule: [MasterScheduleEntry!]!
+  events: [Event!]!
+}
+
+type Location {
+  id: ID!
+  name: String!
+  latitude: Float
+  longitude: Float
+  classes: [MasterScheduleEntry!]!
+  students: [Student!]!
+}
+
+type MasterScheduleEntry {
+  id: ID!
+  letterDay: ScheduleDay!
+  periodNum: Int!
+  startTime: Int!
+  endTime: Int!
+  class: Class!
+  teacher: User!
+  room: Location!
+}
+
+enum ScheduleDay {
+  A
+  B
+}
+
+type Class {
+  id: ID!
+  name: String!
+}
+
+type User {
+  id: ID!
+  name: String!
+  username: String!
+  password: String!
+  classes: [MasterScheduleEntry!]
+}
+
+type Event {
+  id: ID!
+  student: Student!
+  timestamp: Int!
+  location: Location
+  type: EventType
+}
+
+enum EventType {
+  ENTER
+  LEAVE
+}
