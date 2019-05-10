@@ -17,6 +17,7 @@
     "url": "https://github.com/controversial/edd-attendance/issues"
   },
   "dependencies": {
+    "dotenv": "^8.0.0",
     "graphql-yoga": "^1.17.4",
     "prisma-client-lib": "^1.30.4",
     "ws": "^7.0.0"

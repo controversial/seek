@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const prisma = require('~prisma');
 const { GraphQLServer } = require('graphql-yoga');
 
