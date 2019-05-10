@@ -1,10 +1,12 @@
-const express = require('express')
-const bodyParser = require('body-parser')
+const prisma = require('~prisma');
+const { GraphQLServer } = require('graphql-yoga');
 
-const app = express()
-app.use(bodyParser.json())
+const server = new GraphQLServer({
+  typeDefs: `${__dirname}/schema.graphql`,
+  resolvers: require('./resolvers'),
+  context: {
+    prisma,
+  },
+});
 
-const routeHandlers = require('./routes');
-routeHandlers(app);
-
-app.listen(3000, () => console.log('Server is running on http://localhost:3000'))
+server.start(() => console.log('Server is running on http://localhost:4000'));
