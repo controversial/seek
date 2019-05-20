@@ -11,7 +11,17 @@ ws.on('message', async (message) => {
   const { sensors, location: locationName, time } = JSON.parse(message);
   const { d: deviceId } = sensors;
   // Match a student to this event
-  const student = await prisma.student({ assignedDeviceId: deviceId });
+  const student = await prisma
+    .student({ assignedDeviceId: deviceId })
+    .$fragment(`
+      fragment StudentWithLocationInfo on Student {
+        id
+        name
+        assignedDeviceId
+        lastSeen
+        location { id }
+        tentativeLocation { id }
+      }`);
   if (student === null) return;
   // Match location id to the location measured
   const location = await prisma.location({ name: locationName });
@@ -22,4 +32,26 @@ ws.on('message', async (message) => {
     student: { connect: { id: student.id } },
     ...location && { location: { connect: { id: location.id } } },
   });
+
+  const locationUpdates = {};
+  // Student isn't already in recorded location
+  if (student.location && location && student.location.id !== location.id) {
+    // Tentative location matches measured location. Location is confirmed
+    if (student.tentativeLocation && student.tentativeLocation.id === location.id) {
+      Object.assign(locationUpdates, {
+        location: { connect: { id: location.id } },
+        tentativeLocation: null,
+      });
+    }
+    // Tentative location didn't match. Set new tentative location
+    else Object.assign(locationUpdates, { tentativeLocation: { connect: { id: location.id } } });
+  }
+
+  await prisma.updateStudent({
+    where: { id: student.id },
+    data: {
+      lastSeen: new Date(time),
+      ...locationUpdates,
+    }
+  })
 });
