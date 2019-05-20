@@ -34,8 +34,8 @@ type MasterScheduleEntry {
   id: ID!
   letterDay: ScheduleDay!
   periodNum: Int!
-  startTime: Int!
-  endTime: Int!
+  startTime: String!
+  endTime: String!
   class: Class!
   teacher: User!
   room: Location!
