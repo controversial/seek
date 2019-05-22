@@ -47,6 +47,15 @@ ws.on('message', async (message) => {
     else Object.assign(locationUpdates, { tentativeLocation: { connect: { id: location.id } } });
   }
 
+  // New location recorded; record an Event
+  if (locationUpdates.location) {
+    await prisma.createEvent({
+      timestamp: new Date(time),
+      student: { connect: { id: student.id } },
+      ...location && { location: { connect: { id: location.id } } },
+    });
+  }
+
   await prisma.updateStudent({
     where: { id: student.id },
     data: {
