@@ -11,7 +11,7 @@ ws.on('message', async (message) => {
   const { sensors, location: locationName, time } = JSON.parse(message);
   const { d: deviceId } = sensors;
   // Match a student to this event
-  const student = await prisma
+  const studentQuery = prisma
     .student({ assignedDeviceId: deviceId })
     .$fragment(`
       fragment StudentWithLocationInfo on Student {
@@ -22,16 +22,12 @@ ws.on('message', async (message) => {
         location { id }
         tentativeLocation { id }
       }`);
-  if (student === null) return;
   // Match location id to the location measured
-  const location = await prisma.location({ name: locationName });
+  const locationQuery = prisma.location({ name: locationName });
+
+  const [student, location] = await Promise.all([studentQuery, locationQuery]);
+  if (student === null) return;
   if (!location) console.warn(`Warning: find3 location '${locationName}' didn't match any defined locations`);
-  // Record event
-  await prisma.createEvent({
-    timestamp: new Date(time),
-    student: { connect: { id: student.id } },
-    ...location && { location: { connect: { id: location.id } } },
-  });
 
   const locationUpdates = {};
   // Student isn't already in recorded location
