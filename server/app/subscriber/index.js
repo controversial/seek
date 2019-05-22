@@ -35,7 +35,7 @@ ws.on('message', async (message) => {
 
   const locationUpdates = {};
   // Student isn't already in recorded location
-  if (student.location && location && student.location.id !== location.id) {
+  if (location && (student.location || {}).id !== location.id) {
     // Tentative location matches measured location. Location is confirmed
     if (student.tentativeLocation && student.tentativeLocation.id === location.id) {
       Object.assign(locationUpdates, {
