@@ -17,6 +17,7 @@ type Student {
 type Location {
   id: ID! @id
   name: String! @unique
+  external: Boolean! @default(value: false) # Is the location outside of a real classroom (like a hallway)
   latitude: Float
   longitude: Float
   classes: [MasterScheduleEntry!]!

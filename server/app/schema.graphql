@@ -24,6 +24,7 @@ type Student {
 type Location {
   id: ID!
   name: String!
+  external: Boolean!
   latitude: Float
   longitude: Float
   classes: [MasterScheduleEntry!]!
