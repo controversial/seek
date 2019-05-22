@@ -55,7 +55,6 @@ type User {
   id: ID!
   name: String!
   username: String!
-  password: String!
   classes: [MasterScheduleEntry!]
 }
 
