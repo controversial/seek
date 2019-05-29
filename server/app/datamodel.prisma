@@ -3,6 +3,7 @@
 type Student {
   id: ID! @id
   name: String!
+  username: String! @unique
   lastSeen: DateTime
   location: Location @relation(name: "Location")
   tentativeLocation: Location @relation(name: "TentativeLocation")

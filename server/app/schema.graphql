@@ -13,6 +13,7 @@ type Mutation {
 type Student {
   id: ID!
   name: String!
+  username: String!
   lastSeen: Int
   location: Location
   tentativeLocation: Location
