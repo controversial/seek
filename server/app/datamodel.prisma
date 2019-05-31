@@ -55,7 +55,7 @@ type Class {
 type User {
   id: ID! @id
   name: String!
-  username: String!
+  username: String! @unique
   classes: [MasterScheduleEntry!] # If provided, the user may only view these classes
 }
 
