@@ -5,16 +5,19 @@ module.exports = {
     },
 
     async students(root, args, context) {
-      const teacherClasses = await context.prisma
-        .user({ username: args.teacher })
-        .classes();
-      const teacherScheduleIds = teacherClasses.map(c => c.id);
+      const filterByTeacher = !!args.teacher;
+      let teacherScheduleIds;
+      if (filterByTeacher) {
+        const teacherClasses = await context.prisma
+          .user({ username: args.teacher })
+          .classes();
+        teacherScheduleIds = teacherClasses.map(c => c.id);
+      }
 
-      return context.prisma.students({
-        where: {
-          schedule_some: { id_in: teacherScheduleIds },
-        },
-      });
+      const query = filterByTeacher
+        ? { where: { schedule_some: { id_in: teacherScheduleIds } } }
+        : undefined;
+      return context.prisma.students(query);
     },
   },
 
