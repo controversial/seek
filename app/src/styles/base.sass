@@ -10,4 +10,14 @@
 body
   margin: 0
   padding: 0
+  background: $white-2
+  font-family: $font-lato
+
+%h
+  margin: 0
+  font-weight: 800
+
+@for $i from 1 through 6
+  h#{$i}
+    @extend %h
 

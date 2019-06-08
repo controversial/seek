@@ -1,5 +1,5 @@
 <template>
-  <div class="header">Header</div>
+  <header>Header</header>
 </template>
 
 <script src="./script.js"></script>
