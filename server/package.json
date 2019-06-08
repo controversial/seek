@@ -2,7 +2,7 @@
   "name": "edd-attendance-server",
   "version": "0.0.1",
   "scripts": {
-    "start": "docker-compose up -d && prisma deploy && node app",
+    "start": "docker-compose up -d && prisma deploy && nodemon app",
     "stop": "docker-compose down",
     "postinstall": "link-module-alias"
   },
@@ -23,7 +23,8 @@
     "ws": "^7.0.0"
   },
   "devDependencies": {
-    "link-module-alias": "^1.2.0"
+    "link-module-alias": "^1.2.0",
+    "nodemon": "^1.19.1"
   },
   "_moduleAliases": {
     "~prisma": "./generated/prisma-client"
