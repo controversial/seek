@@ -39,6 +39,7 @@ type MasterScheduleEntry {
   class: Class!
   teacher: User!
   room: Location!
+  students: [Student]!
 }
 
 enum ScheduleDay {
