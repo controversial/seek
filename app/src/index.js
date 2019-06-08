@@ -3,8 +3,13 @@ import './index.html';
 import './styles.sass';
 
 
+import router from './router';
+import store from './vuex';
+
 window.app = new Vue({
   el: '#app',
+  router,
+  store,
 
   data: {
     hello: 'Hello, world!',
