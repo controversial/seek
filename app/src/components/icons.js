@@ -9,6 +9,7 @@ const iconNames = [
   'BellIcon',
   'MessageSquareIcon',
   'SettingsIcon',
+  'ClipboardIcon',
 ];
 
 // Register all icons as Vue components
