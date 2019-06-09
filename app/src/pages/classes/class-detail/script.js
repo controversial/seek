@@ -2,6 +2,8 @@ import { mapState } from 'vuex';
 import gql from 'graphql-tag';
 import { ordinal } from '../../../utils';
 
+const statuses = {};
+
 export default {
   data: () => ({
     data: {},
@@ -15,6 +17,19 @@ export default {
 
   methods: {
     ordinal,
+
+    randomStatus() {
+      const absent = Math.random() > 0.85;
+      const arrivalDelta = Math.floor((Math.random() * 20) - 15);
+      if (absent) return { status: 'absent', text: 'Absent' };
+      if (arrivalDelta > 0) return { status: 'late', text: `Late – 7:5${10 - arrivalDelta}` };
+      return { status: 'present', text: 'Present' };
+    },
+
+    getStatus(student) {
+      if (!statuses[student.username]) statuses[student.username] = this.randomStatus();
+      return statuses[student.username];
+    },
   },
 
   apollo: {
