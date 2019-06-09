@@ -1,6 +1,8 @@
 /* eslint-disable import/first */
 import Vue from 'vue';
 
+import './icons';
+
 import Sidebar from './sidebar/sidebar.vue';
 Vue.component('sidebar', Sidebar);
 
