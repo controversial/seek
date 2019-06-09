@@ -1,0 +1,8 @@
+{
+  "schemaPath": "../server/app/schema.graphql",
+  "extensions": {
+    "endpoints": {
+      "dev": "http://0.0.0.0:7336"
+    }
+  }
+}

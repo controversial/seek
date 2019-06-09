@@ -43,7 +43,11 @@
     "webpack-dev-server": "^3.7.1"
   },
   "dependencies": {
+    "apollo-boost": "^0.4.2",
+    "graphql": "^14.3.1",
+    "graphql-tag": "^2.10.1",
     "vue": "^2.6.10",
+    "vue-apollo": "^3.0.0-beta.30",
     "vue-feather-icons": "^4.22.0",
     "vue-router": "^3.0.6",
     "vuex": "^3.1.1"
