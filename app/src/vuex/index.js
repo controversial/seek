@@ -11,6 +11,7 @@ export default new Vuex.Store({
     },
     user: {
       name: 'Alexis Mallory',
+      username: 'amallory',
       picture: 'https://media-public.canva.com/MADGxmybktE/4/screen_2x.jpg',
     },
   },
