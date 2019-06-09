@@ -18,7 +18,7 @@ type Student {
   tentativeLocation: Location
   assignedDeviceId: String
   schedule: [MasterScheduleEntry!]!
-  events: [Event!]!
+  events(from: String, to: String): [Event!]!
 }
 
 type Location {

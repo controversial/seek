@@ -10,7 +10,7 @@ type Student {
   tentativeLocation: Location @relation(name: "TentativeLocation")
   assignedDeviceId: String @unique
   schedule: [MasterScheduleEntry!]!
-  events: [Event!]!
+  events(from: String, to: String): [Event!]!
 }
 
 

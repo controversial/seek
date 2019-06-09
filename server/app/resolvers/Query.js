@@ -32,11 +32,25 @@ module.exports = {
   Student: {
     schedule(root, args, context) { return context.prisma.student({ id: root.id }).schedule(); },
     location(root, args, context) { return context.prisma.student({ id: root.id }).location(); },
+    events(root, args, context) {
+      return context.prisma.student({ id: root.id }).events({
+        ...(args.from && args.to) && {
+          where: {
+            timestamp_gt: args.from,
+            timestamp_lt: args.to,
+          },
+        },
+      });
+    }
   },
 
   MasterScheduleEntry: {
     class(root, args, context) { return context.prisma.masterScheduleEntry({ id: root.id }).class(); },
     teacher(root, args, context) { return context.prisma.masterScheduleEntry({ id: root.id }).teacher(); },
     students(root, args, context) { return context.prisma.students({ where: { schedule_some: { id: root.id } } }); },
+  },
+
+  Event: {
+    location(root, args, context) { return context.prisma.event({ id: root.id }).location(); },
   },
 };
