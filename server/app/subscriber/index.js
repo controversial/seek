@@ -44,12 +44,13 @@ ws.on('message', async (message) => {
   }
 
   // New location recorded; record an Event
-  if (locationUpdates.location) {
+  if (locationUpdates.location && (student.location || !location.external)) {
     await prisma.createEvent({
       timestamp: new Date(time),
       student: { connect: { id: student.id } },
-      ...location && { location: { connect: { id: location.id } } },
-      type: location.external ? 'LEAVE' : 'ENTER', // If the new location is “external,” we're leaving; otherwise we're entering
+      // If the new location is “external,” we're leaving; otherwise we're entering
+      ...location && { location: { connect: { id: location.external ? student.location.id : location.id } } },
+      type: location.external ? 'LEAVE' : 'ENTER',
     });
   }
 
