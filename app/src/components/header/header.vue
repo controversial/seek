@@ -1,5 +1,9 @@
 <template>
   <header>
+    <div class="user-info">
+      {{ user.name }}
+      <div class="picture" v-bind:style="{ backgroundImage: `url(${user.picture})` }"></div>
+    </div>
     <div class="school-info">
       <div class="picture" v-bind:style="{ backgroundImage: `url(${school.logo})` }"></div>
       <h2>{{ school.name }}</h2>

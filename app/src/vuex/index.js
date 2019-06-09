@@ -9,5 +9,9 @@ export default new Vuex.Store({
       numStudents: 763,
       logo: '/static/np.png',
     },
+    user: {
+      name: 'Alexis Mallory',
+      picture: 'https://media-public.canva.com/MADGxmybktE/4/screen_2x.jpg',
+    },
   },
 });
