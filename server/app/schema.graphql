@@ -12,7 +12,7 @@ type Student {
   id: ID!
   name: String!
   username: String!
-  lastSeen: Int
+  lastSeen: String
   location: Location
   tentativeLocation: Location
   assignedDeviceId: String
@@ -62,7 +62,7 @@ type User {
 type Event {
   id: ID!
   student: Student!
-  timestamp: Int!
+  timestamp: String!
   location: Location
   type: EventType
 }
