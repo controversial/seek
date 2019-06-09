@@ -30,7 +30,8 @@ module.exports = {
   },
 
   Student: {
-    schedule(root, args, context) { return context.prisma.student({ id: root.id }).schedule(); }
+    schedule(root, args, context) { return context.prisma.student({ id: root.id }).schedule(); },
+    location(root, args, context) { return context.prisma.student({ id: root.id }).location(); },
   },
 
   MasterScheduleEntry: {
