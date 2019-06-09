@@ -4,6 +4,7 @@ type Student {
   id: ID! @id
   name: String!
   username: String! @unique
+  gradeLevel: Int
   lastSeen: DateTime
   location: Location @relation(name: "Location")
   tentativeLocation: Location @relation(name: "TentativeLocation")

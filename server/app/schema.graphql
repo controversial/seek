@@ -6,12 +6,13 @@ type Query {
 
 
 
-# Duplicated from datamodel.prisma
+# Loosely duplicated from datamodel.prisma
 
 type Student {
   id: ID!
   name: String!
   username: String!
+  gradeLevel: Int
   lastSeen: String
   location: Location
   tentativeLocation: Location
