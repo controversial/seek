@@ -23,7 +23,7 @@ export default {
         query FetchQuery($teacher: String!, $period: String!) {
           class(teacher: $teacher, period: $period) {
             class { name }
-            students { name username location { name } }
+            students { name username gradeLevel location { name } }
           }
         }
       `,
