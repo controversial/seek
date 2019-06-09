@@ -1,7 +1,7 @@
 <template>
   <header>
     <div class="user-info">
-      {{ user.name }}
+      <span ref="name">{{ user.name }}</span>
       <div class="picture" v-bind:style="{ backgroundImage: `url(${user.picture})` }"></div>
     </div>
     <div class="school-info">
