@@ -1,5 +1,6 @@
 import { mapState } from 'vuex';
 import gql from 'graphql-tag';
+import { ordinal } from '../../../utils';
 
 export default {
   data: () => ({
@@ -12,13 +13,17 @@ export default {
     students() { return this.data.students; },
   },
 
+  methods: {
+    ordinal,
+  },
+
   apollo: {
     class: {
       query: gql`
         query FetchQuery($teacher: String!, $period: String!) {
           class(teacher: $teacher, period: $period) {
             class { name }
-            students { name }
+            students { name username location { name } }
           }
         }
       `,
