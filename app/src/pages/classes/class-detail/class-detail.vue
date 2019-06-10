@@ -20,7 +20,7 @@
           {{ (student.location || { name: '--' }).name }}
         </td>
         <td>
-          <div class="attendance-badge" v-bind:class="getStatus(student).status">{{ getStatus(student).text }}</div>
+          <div class="attendance-badge" v-bind:class="getStatus(student)">{{ getStatus(student) }}</div>
         </td>
       </tr>
     </table>

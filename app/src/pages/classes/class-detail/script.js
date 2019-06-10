@@ -2,8 +2,6 @@ import { mapState } from 'vuex';
 import gql from 'graphql-tag';
 import { ordinal } from '../../../utils';
 
-const statuses = {};
-
 function todayAtTime(time) { return new Date(`${new Date().toLocaleDateString()} ${time}`); }
 
 export default {
@@ -20,17 +18,13 @@ export default {
   methods: {
     ordinal,
 
-    randomStatus() {
-      const absent = Math.random() > 0.85;
-      const arrivalDelta = Math.floor((Math.random() * 20) - 15);
-      if (absent) return { status: 'absent', text: 'Absent' };
-      if (arrivalDelta > 0) return { status: 'late', text: `Late – 8:${arrivalDelta.toString().padStart(2, '0')}` };
-      return { status: 'present', text: 'Present' };
-    },
-
     getStatus(student) {
-      if (!statuses[student.username]) statuses[student.username] = this.randomStatus();
-      return statuses[student.username];
+      if (student.events.length) {
+        const firstAppearance = student.events.find(e => e.location.name === this.data.room.name);
+        if (firstAppearance) return new Date(firstAppearance.timestamp) < this.data.startTime ? 'present' : 'late';
+      }
+      if (student.location && student.location.name === this.data.room.name) return 'present';
+      return 'absent';
     },
   },
 
