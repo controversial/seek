@@ -21,7 +21,8 @@ export default {
     getStatus(student) {
       if (student.events.length) {
         const firstAppearance = student.events.find(e => e.location.name === this.data.room.name);
-        if (firstAppearance) return new Date(firstAppearance.timestamp) < this.data.startTime ? 'present' : 'late';
+        const t = new Date(firstAppearance.timestamp);
+        if (firstAppearance) return t < this.data.startTime ? 'present' : `late – ${t.getHours()}:${t.getMinutes().toString().padStart(2, '0')}`;
       }
       if (student.location && student.location.name === this.data.room.name) return 'present';
       return 'absent';
