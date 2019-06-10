@@ -50,6 +50,7 @@ module.exports = {
     class(root, args, context) { return context.prisma.masterScheduleEntry({ id: root.id }).class(); },
     teacher(root, args, context) { return context.prisma.masterScheduleEntry({ id: root.id }).teacher(); },
     students(root, args, context) { return context.prisma.students({ where: { schedule_some: { id: root.id } } }); },
+    room(root, args, context) { return context.prisma.masterScheduleEntry({ id: root.id }).room(); },
   },
 
   Event: {

@@ -46,6 +46,7 @@ export default {
             class { name }
             startTime
             endTime
+            room { name }
             students {
               id
               name
