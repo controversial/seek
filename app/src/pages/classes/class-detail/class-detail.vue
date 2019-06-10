@@ -10,7 +10,7 @@
       </thead>
       <tr v-for="student in students" v-bind:key="student.username">
         <td class="student-info">
-          <div class="picture" v-bind:style="{ backgroundImage: `url(https://source.unsplash.com/50x50/?face,${student.username})`}"></div>
+          <div class="picture" v-bind:style="{ backgroundImage: `url(/static/profile.jpg)`}"></div>
           <div>
             <div class="name">{{ student.name }}</div>
             <div class="grade-level" v-if="student.gradeLevel">{{ ordinal(student.gradeLevel) }} grade</div>
