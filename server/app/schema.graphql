@@ -1,6 +1,6 @@
 type Query {
   student(username: String!): Student!
-  students(teacher: String): [Student]!
+  students(teacher: String, ids: [ID!]): [Student]!
   class(teacher: String!, period: String!): MasterScheduleEntry!
 }
 

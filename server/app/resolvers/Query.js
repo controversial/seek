@@ -6,6 +6,7 @@ module.exports = {
 
     async students(root, args, context) {
       const filterByTeacher = !!args.teacher;
+      const filterByIds = !!args.ids;
       let teacherScheduleIds;
       if (filterByTeacher) {
         const teacherClasses = await context.prisma
@@ -14,9 +15,10 @@ module.exports = {
         teacherScheduleIds = teacherClasses.map(c => c.id);
       }
 
-      const query = filterByTeacher
-        ? { where: { schedule_some: { id_in: teacherScheduleIds } } }
-        : undefined;
+      let query;
+      if (filterByTeacher) query = { where: { schedule_some: { id_in: teacherScheduleIds } } };
+      else if (filterByIds) query = { where: { id_in: args.ids } };
+
       return context.prisma.students(query);
     },
 
